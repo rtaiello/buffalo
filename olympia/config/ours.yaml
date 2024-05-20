@@ -1,0 +1,24 @@
+num_clients:
+  # - 5
+  #  - 64
+  #  - 128
+  #  - 256
+  #  - 512
+  #  - 1024
+  
+dims:
+  - 1e3
+  - 1e5
+  - 1e6
+num_trials: 5
+midnight: 2022-06-02
+protocol_name: Ours
+seed: 0
+protocol_location_client: agent.Ours.OursClientAgent
+protocol_location_server: agent.Ours.OursServiceAgent
+default_computation_delay: 5
+params:
+  s_len: 710
+  frac_honests: 0.66
+  packing: true
+  dropout_fraction: 0.00

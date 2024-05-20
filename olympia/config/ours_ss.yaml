@@ -1,0 +1,21 @@
+num_clients:
+
+    - 64
+    - 128
+    - 256
+    - 512  
+dims:
+  - 1e4
+  - 1e5
+  - 1e6
+num_trials: 5
+midnight: 2022-06-02
+protocol_name: OursSS
+seed: 0
+protocol_location_client: agent.OursSS.OursSSClientAgent
+protocol_location_server: agent.OursSS.OursSSServiceAgent
+default_computation_delay: 5
+params:
+  s_len: 2048
+  frac_honests: 0.66
+  dropout_fraction: 0.00

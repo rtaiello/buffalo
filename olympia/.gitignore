@@ -1,0 +1,13 @@
+#Ignore log folder
+log
+data
+backup
+**/__pycache__/*
+__pycache__
+latency.npy
+temp_results
+results
+.vscode
+.ipyynb_checkpoints
+.DS_Store
+cache

@@ -1,0 +1,18 @@
+num_clients:
+  - 64
+  - 128
+  - 256
+  - 512
+dims:
+  - 1e2
+num_trials: 5
+midnight: 2022-06-02
+protocol_name: OursVeriSA
+seed: 0
+protocol_location_client: agent.OursVeriSA.OursVeriSAClientAgent
+protocol_location_server: agent.OursVeriSA.OursVeriSAServiceAgent
+default_computation_delay: 5
+params:
+  frac_honests: 0.66
+  packing: true
+  dropout_fraction: 0.065

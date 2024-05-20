@@ -1,0 +1,17 @@
+num_clients:
+  - 64
+  - 128
+  - 256
+  - 512
+dims:
+  - 1e2
+num_trials: 5
+midnight: 2022-06-02
+protocol_name: VeriSA
+seed: 0
+protocol_location_client: agent.VeriSA.VeriSAClientAgent
+protocol_location_server: agent.VeriSA.VeriSAServiceAgent
+default_computation_delay: 5
+params:
+  frac_honests: 0.66
+  dropout_fraction: 0.065
