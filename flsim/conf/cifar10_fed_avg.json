@@ -1,0 +1,45 @@
+{
+  "config": {
+    "trainer": {
+      "_base_": "base_sync_trainer",
+      "epochs": 100,
+      "dropout_rate": 1.3,      
+      "server": {
+        "_base_": "base_sync_secagg_server",
+        "fixedpoint": {
+        "_base_": "base_fixedpoint",
+        "num_bytes": 2,
+        "scaling_factor": 100
+        },
+        "server_optimizer": {
+          "_base_": "base_fed_avg_with_lr",
+          "lr": 1.0        },
+        "aggregation_type": "WEIGHTED_AVERAGE",
+        "active_user_selector": {
+          "_base_": "base_uniformly_random_active_user_selector"
+        }
+      },
+      "client": {
+        "n_sgd": 10,
+        "max_clip_norm_normalized": 2.0,
+        "store_folder": "/home/taiello/projects/fl-med-devices/resources/cifar10/fed_avg/",
+        "optimizer": {
+          "_base_": "base_optimizer_sgd",
+         "lr": 0.1,
+         "momentum": 0.9       
+         }
+      },
+      "users_per_round": 32,
+      "train_metrics_reported_per_epoch": 1,
+      "always_keep_trained_model": false,
+      "report_train_metrics": true,
+      "eval_epoch_frequency": 0.2,
+      "do_eval": true,
+      "report_train_metrics_after_aggregation": false
+    },
+    "data": {
+      "local_batch_size": 8,
+      "examples_per_user": 125
+    }
+  }
+}

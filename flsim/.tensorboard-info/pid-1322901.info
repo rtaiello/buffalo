@@ -1,0 +1,10 @@
+{
+    "cache_key": "eyJhcmd1bWVudHMiOlsiLS1sb2dkaXIiLCJydW5zLyJdLCJjb25maWd1cmVfa3dhcmdzIjp7fSwid29ya2luZ19kaXJlY3RvcnkiOiIvaG9tZS90YWllbGxvL3Byb2plY3RzL2ZsLW1lZC1kZXZpY2VzIn0=",
+    "db": "",
+    "logdir": "runs/",
+    "path_prefix": "",
+    "pid": 1322901,
+    "port": 6006,
+    "start_time": 1712042745,
+    "version": "2.11.0"
+}

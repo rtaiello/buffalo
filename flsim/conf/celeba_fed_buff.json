@@ -1,0 +1,71 @@
+{
+  "config": {
+    "trainer": {
+      "_base_": "base_async_trainer",
+      "aggregator": {
+        "_base_": "base_fed_avg_with_lr_hybrid_aggregator",
+        "lr": 1.0,
+        "buffer_size": 128,
+        "reducer": {
+        "_base_": "base_secagg_reducer",
+        "reduction_type": "WEIGHTED_AVERAGE",
+        "fixedpoint": {
+        "_base_": "base_fixedpoint",
+        "num_bits": 8,
+        "scaling_factor": 10
+        }
+        }
+        
+      },
+      "training_event_generator": {
+          "_base_": "base_async_training_event_generator",
+          "training_start_time_distribution": {
+            "_base_": "base_constant_training_start_time_distribution",
+            "training_rate": 100
+          },
+          "duration_distribution_generator": {
+          "_base_": "base_per_user_half_normal_duration_distribution",
+          "training_duration_sd": 1.25,
+          "training_duration_min": 0.00
+        }
+      },
+      "async_weight": {
+        "_base_": "base_async_weight",
+        "example_weight": {
+          "_base_": "base_linear_example_weight",
+          "avg_num_examples": 1
+      }
+      },
+      "client": {
+        "n_sgd": 10,
+        "store_folder": "/home/taiello/projects/fl-med-devices/resources/celeba/fed_buff/",
+        "num_bits": 8,
+        "scaling_factor": 10,
+        "optimizer": {
+          "_base_": "base_optimizer_sgd",
+          "lr": 0.1,
+          "momentum": 0.9
+        }
+      },
+      "epochs": 25,
+      "train_metrics_reported_per_epoch": 100,
+      "always_keep_trained_model": false,
+      "eval_epoch_frequency": 0.2,
+      "do_eval": true,
+      "report_train_metrics_after_aggregation": false
+    },
+    "data": {
+      "local_batch_size": 8,
+      "drop_last": false
+    },
+    "model": {
+      "use_resnet": false,
+      "dropout": 0.1,
+      "target_eval": 90,
+      "window_size": 1,
+      "average_type": "sma"
+    },
+    "distributed_world_size": 1,
+    "use_cuda_if_available": false
+  }
+}

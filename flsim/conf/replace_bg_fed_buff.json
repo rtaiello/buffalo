@@ -1,0 +1,63 @@
+{
+  "config": {
+    "trainer": {
+      "_base_": "base_async_trainer",
+      "epochs": 150,
+      "always_keep_trained_model": false,
+      "client": {
+        "n_sgd": 20,
+        "store_folder": "/home/taiello/projects/fl-med-devices/resources/replace_bg/fed_buff",
+        "num_bits": 8,
+        "scaling_factor": 10,
+        "optimizer": {
+          "_base_": "base_optimizer_sgd",
+          "lr": 0.001,
+          "momentum": 0.9
+        }
+      },
+      "aggregator": {
+        "_base_": "base_fed_avg_with_lr_hybrid_aggregator",
+        "lr": 1.0,
+        "buffer_size": 16,
+        "reducer": {
+        "_base_": "base_secagg_reducer",
+        "reduction_type": "WEIGHTED_AVERAGE",
+        "fixedpoint": {
+        "_base_": "base_fixedpoint",
+        "num_bits": 8,
+        "scaling_factor": 10
+        }
+        }
+      },
+      "training_event_generator": {
+          "_base_": "base_async_training_event_generator",
+          "training_start_time_distribution": {
+            "_base_": "base_constant_training_start_time_distribution",
+            "training_rate": 100
+          },
+          "duration_distribution_generator": {
+          "_base_": "base_per_user_half_normal_duration_distribution",
+          "training_duration_sd": 1.25,
+          "training_duration_min": 0.01
+        }
+        },
+        "async_weight": {
+        "_base_": "base_async_weight",
+        "example_weight": {
+          "_base_": "base_linear_example_weight",
+          "avg_num_examples":1
+        }
+      },
+
+      "report_train_metrics": true,
+      "eval_epoch_frequency": 0.2,
+      "train_metrics_reported_per_epoch": 100,
+      "do_eval": true,
+      "report_train_metrics_after_aggregation": false
+    },
+    "data": {
+      "local_batch_size": 64 ,  
+      "num_training_clients":180
+    }
+  }
+}

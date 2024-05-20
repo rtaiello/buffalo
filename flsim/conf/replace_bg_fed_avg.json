@@ -1,0 +1,48 @@
+{
+  "config": {
+    "trainer": {
+      "_base_": "base_sync_trainer",
+      "server": {
+       "_base_": "base_sync_secagg_server",
+        "fixedpoint": {
+        "_base_": "base_fixedpoint",
+        "num_bits": 8,
+        "scaling_factor": 1
+        },
+        "server_optimizer": {
+          "_base_": "base_fed_avg_with_lr",
+          "lr": 1.0,
+          "momentum": 0.0
+        },
+        "aggregation_type": "WEIGHTED_AVERAGE",
+        "active_user_selector": {
+          "_base_": "base_uniformly_random_active_user_selector",
+          "user_selector_seed": 42
+        }
+      },
+      "client": {
+        "n_sgd": 20,
+        "store_folder": "/home/taiello/projects/fl-med-devices/resources/replace_bg/fed_avg",
+        "num_bits": 8,
+        "scaling_factor": 10,
+        "optimizer": {
+          "_base_": "base_optimizer_sgd",
+          "lr": 0.001,
+          "momentum": 0.9
+        }
+      },
+      "users_per_round": 16,
+      "epochs": 150,
+      "dropout_rate": 1.3,
+      "train_metrics_reported_per_epoch": 1,
+      "always_keep_trained_model": false,
+      "eval_epoch_frequency": 0.2,
+      "do_eval": true,
+      "report_train_metrics_after_aggregation": false
+    },
+    "data": {
+      "local_batch_size": 64 ,  
+      "num_training_clients":180
+      }
+  }
+}
