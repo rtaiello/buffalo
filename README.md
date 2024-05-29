@@ -1,1 +1,1 @@
-# Buffalo: A Practical Secure Aggregation Protocol for Asynchronous Federated Learning (UNDER SUBMISSION)
+# Buffalo: A Practical Secure Aggregation Protocol for Buffered Asynchronous Federated Learning (UNDER SUBMISSION)
